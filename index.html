@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETO BOSS - Artesanía en Cuero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="justify-content" href="script.js">
+ <style>
+    :root {
+    --color-primary: #3E2723;
+    --color-secondary: #E0C6A4;
+    --color-background: #F2E9E1;
+    --color-text: #2D2118;
+    --color-white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--color-primary);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(62, 39, 35, 0.9);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--color-secondary);
+}
+
+.hero {
+    background-image: url('/api/placeholder/1200/600');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 180px; /* Aumentado de 64px a 84px */
+    color: var(--color-white);
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-family: 'Playfair Display', serif; /* Cambiado de Roboto a Playfair Display */
+    font-size: 50px; /* Aumentado ligeramente de 24px a 28px */
+    color: var(--color-white);
+    margin-bottom: 30px;
+}
+
+.btn-ver {
+    display: flex;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;    
+    justify-content: center;
+    align-items: center;       
+}
+
+.btn-prod {
+    display: inline-flex;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;    
+    justify-content: center;
+    align-items: center;       
+}
+
+.btn:hover {
+    background-color: #D1B48C;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-primary);
+}
+
+.productos {
+    padding: 80px 0;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.producto-item {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.producto-info {
+    padding: 20px;
+}
+
+.producto-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;    
+}
+
+.producto-info p {
+    color: #616161;
+    margin-bottom: 15px;
+}
+
+.sobre-nosotros {
+    padding: 80px 0;
+    background-color: var(--color-secondary);
+}
+
+.sobre-nosotros-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.sobre-nosotros-text {
+    flex: 1;
+}
+
+.sobre-nosotros-image {
+    flex: 1;
+}
+
+.sobre-nosotros-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contacto {
+    padding: 80px 0;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.contacto-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.contacto-info,
+.contacto-form {
+    flex: 1;
+}
+
+.contacto-form form {
+    display: grid;
+    gap: 20px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contacto-form textarea {
+    height: 150px;
+}
+
+footer {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.virtual-assistant {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.virtual-assistant:hover {
+    transform: scale(1.1);
+}
+
+.virtual-assistant img {
+    width: 35px;
+    height: 35px;
+}
+
+.chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chat-header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px;
+    font-weight: bold;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.chat-input button {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 20px;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    .hero h1 {
+        font-size: 60px; /* Ajustado para dispositivos móviles */
+    }
+
+    .hero p {
+        font-size: 22px; /* Ajustado para dispositivos móviles */
+    }
+
+    .sobre-nosotros-content,
+    .contacto-content {
+        flex-direction: column;
+    }
+
+    #cart-icon {
+        font-size: 50px;
+        position: relative;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Neto Boss</a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#" id="cart-icon">🛒 <span id="cart-count">0</span></a></li>
+                </ul> 
+            </nav>
+        </div>
+    </header>
+
+    <div class="virtual-assistant" id="virtual-assistant-icon">
+        <img src="imagenes/asistente-modified.png" alt="Asistente Virtual">
+    </div>
+
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">Asistente Virtual</div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+            <button id="send-message">Enviar</button>
+        </div>
+    </div>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Neto Boss</h1>
+            <p>Cuero de la más alta calidad </p>
+            <a href="#productos" class="btn-prod">Ver Productos</a>
+        </div>
+    </section>
+
+    <section id="productos" class="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="productos-grid">
+                <div class="producto-item">
+                    <img src="imagenes/casaca 10.jpeg" alt="Casaca de Cuero">
+                    <div class="producto-info">
+                        <h3>Casacas</h3>
+                        <p>Glamour para dama y caballeros.</p>
+                        <a href="#" class="btn-ver">VER</a>
+
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/cartera buena.jpg" alt="Cartera de Cuero">
+                    <div class="producto-info">
+                        <h3>Carteras</h3>
+                        <p>Elegancia y estilo en cada pieza.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/zapatos.jpg" alt="Zapatos de Cuero">
+                    <div class="producto-info">
+                        <h3>Zapatos</h3>
+                        <p>Comodidad y diseño en cada paso.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/correas1.jpg" alt="Cinturón de Cuero">
+                    <div class="producto-info">
+                        <h3>Cinturónes</h3>
+                        <p>El complemento perfecto para tu estilo.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/billeteraaaaa.jpg" alt="Cinturón de Cuero">
+                    <div class="producto-info">
+                        <h3>Billeteras</h3>
+                        <p>El complemento perfecto para tu estilo.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/mochila.jpg" alt="Cinturón de Cuero">
+                    <div class="producto-info">
+                        <h3>Mochilas</h3>
+                        <p>Mochilas de la mas alta calidad para que la lleves todos lados .</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>  
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/gorro1.jpg" alt="Cinturón de Cuero">
+                    <div class="producto-info">
+                        <h3>Gorros</h3>
+                        <p>El complemento perfecto para dar mas estilo a tu outfit.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+                <div class="producto-item">
+                    <img src="imagenes/pulseras.jpg" alt="Cinturón de Cuero">
+                    <div class="producto-info">
+                        <h3>Pulseras</h3>
+                        <p>El complemento perfecto para tu muñeca.</p>
+                        <a href="#" class="btn-ver">VER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros" class="sobre-nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="sobre-nosotros-content">
+                <div class="sobre-nosotros-text">
+                    <p>Con más de 20 años en la industria del cuero, en Neto Boss nos enorgullecemos de ofrecer productos de la más alta calidad. Nuestro compromiso con la excelencia se refleja en cada pieza que creamos, combinando técnicas tradicionales con un enfoque moderno y sostenible.</p>
+                    <p>Ubicados en el corazón de Cajamarca, Perú, nuestros expertos trabajan con pasión para crear piezas únicas que perduran en el tiempo. </p>
+                </div>
+                <div class="sobre-nosotros-image">
+                    <img src="imagenes/Screenshot 2024-10-12 104107.png" alt="Taller de Neto Boss">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <h3>Información de Contacto</h3>
+                    <p>Ubicación: Jr. El Batán 174, Cajamarca, Perú</p>
+                    <p>Teléfono: +51 999 888 777</p>
+                    <p>Email: info@netoboss.com</p>
+                    <p>Horario: Lunes a Sábado, 9:00 AM - 7:00 PM</p>
+                </div>
+                <div class="contacto-form">
+                    <form>
+                        <input type="text" placeholder="Nombre" required>
+                        <input type="email" placeholder="Email" required>
+                        <textarea placeholder="Mensaje" required></textarea>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Neto Boss. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>       
+
+       // Cambiar el fondo del encabezado al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Scroll suave para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+            // Obtener el contador del carrito
+    let cartCount = 0;
+    const cartCountElement = document.getElementById('cart-count');
+
+    // Obtener todos los botones de "Ver más"
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    // Añadir un evento de clic a cada botón
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Evitar comportamiento predeterminado
+            cartCount++; // Incrementar el contador
+            cartCountElement.textContent = cartCount; // Actualizar el número en el carrito
+        });
+    })
+
+     // Asegúrate de que este script esté al final del body, justo antes de </body>
+console.log('Script del asistente virtual iniciado');
+
+(function() {
+    var virtualAssistantIcon = document.getElementById('virtual-assistant-icon');
+    var chatWindow = document.getElementById('chat-window');
+    var chatMessages = document.getElementById('chat-messages');
+    var userInput = document.getElementById('user-input');
+    var sendMessageButton = document.getElementById('send-message');
+
+    console.log('Elementos del DOM:', {
+        virtualAssistantIcon,
+        chatWindow,
+        chatMessages,
+        userInput,
+        sendMessageButton
+    });
+
+    if (!virtualAssistantIcon || !chatWindow || !chatMessages || !userInput || !sendMessageButton) {
+        console.error('Algunos elementos del asistente virtual no se encontraron en el DOM');
+        return;
+    }
+
+    function toggleChatWindow() {
+        console.log('Toggling chat window');
+        chatWindow.style.display = chatWindow.style.display === 'none' || chatWindow.style.display === '' ? 'flex' : 'none';
+        console.log('Chat window display:', chatWindow.style.display);
+    }
+
+    function addMessage(message, isUser) {
+        console.log('Adding message:', message, 'isUser:', isUser);
+        var messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messageElement.style.marginBottom = '10px';
+        messageElement.style.padding = '5px 10px';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.maxWidth = '70%';
+        messageElement.style.alignSelf = isUser ? 'flex-end' : 'flex-start';
+        messageElement.style.backgroundColor = isUser ? '#E0C6A4' : '#f0f0f0';
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleUserMessage() {
+        var message = userInput.value.trim();
+        console.log('Handling user message:', message);
+        if (message) {
+            addMessage(message, true);
+            userInput.value = '';
+            setTimeout(function() {
+                addMessage('Gracias por tu mensaje. ¿En qué más puedo ayudarte?', false);
+            }, 1000);
+        }
+    }
+
+    virtualAssistantIcon.addEventListener('click', toggleChatWindow);
+    sendMessageButton.addEventListener('click', handleUserMessage);
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            handleUserMessage();
+        }
+    });
+
+    console.log('Event listeners added');
+
+    addMessage('¡Hola! Soy el asistente virtual de NETO BOSS. ¿En qué puedo ayudarte?', false);
+    console.log('Welcome message added');
+})();
+
+console.log('Script del asistente virtual completado');
+    
+    </script>
+</body>
+</html>
